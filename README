@@ -1,0 +1,19 @@
+
+To create a new site, first update DNS with your shiny new domain name.
+Once DNS has propagated:
+
+- Copy skel to a new folder, and point webservice.cfg to the hostname and path of the new site.
+
+- Add your code to the new folder, libs/ contains the application server services and pages/ contains content to be served (html/js/css for example, but can also be tornado templates).
+
+- Then you need to update nginx and extend the certificates to enable the new domain name.
+With letsencrypt, you can do that by running these commands as root:
+
+sudo nano /etc/nginx/sites-available/default
+sudo systemctl reload nginx
+sudo certbot --nginx -d my.webapp.com -d another.website.com -d <new hostname>
+
+- Restart webservice by killing the running process
+- Then
+	sudo -u www /opt/webservice/webservice
+and you should be good to go.
