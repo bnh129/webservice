@@ -8,9 +8,9 @@ def create(logger, pages_path):
 
 	app = tornado.web.Application([
 		(
-            r"/",
-            site.MainHandler,
-            dict(
+            		r"/",
+            		site.MainHandler,
+            		dict(
 				path=settings['static_path'],
 				logger=logger,
 			),
